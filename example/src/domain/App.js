@@ -1,5 +1,4 @@
 import { useElementSize }  from '@kaliber/use-element-size'
-import { Expand } from '/domain/Expand'
 import styles from './App.css'
 
 export default function App() {
@@ -25,6 +24,19 @@ export default function App() {
         <button className={styles.button} onClick={() => setExpanded(!expanded)}>
           {expanded ? 'Collapse' : 'Expand'}
         </button>
+      </div>
+    </div>
+  )
+}
+
+export function Expand({ children, expanded }) {
+  const innerRef = React.useRef(null)
+  const { height } = useElementSize(innerRef)
+
+  return (
+    <div className={styles.componentExpand} style={{ height: (expanded ? height : 0) + 'px' }}>
+      <div ref={innerRef}>
+        {children}
       </div>
     </div>
   )

@@ -2,7 +2,7 @@ import { useElementSize }  from '@kaliber/use-element-size'
 import styles from './App.css'
 
 export default function App() {
-  const elementRef = React.useRef()
+  const elementRef = React.useRef(null)
   const { width, height } = useElementSize(elementRef)
 
   return (

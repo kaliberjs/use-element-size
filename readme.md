@@ -7,7 +7,7 @@ Determines the width and height (in pixels) of an element through [ResizeObserve
 ## Polyfill
 At the time of writing, `ResizeObserver` is not yet [supported by all current browsers](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver#Browser_compatibility). There is a [polyfill](https://www.npmjs.com/package/resize-observer-polyfill) available through polyfill.io.
 
-with @kaliberjs/build
+Using @kaliberjs/build, you can add the following argument to the `polyfill()` call.
 ```
 {polyfill(['default', 'ResizeObserver'])}
 ```

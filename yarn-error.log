@@ -1,0 +1,63 @@
+Arguments: 
+  /Users/jkiens/.nvm/versions/node/v12.14.1/bin/node /usr/local/Cellar/yarn/1.21.1/libexec/bin/yarn.js publish
+
+PATH: 
+  /Users/jkiens/.nvm/versions/node/v12.14.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  12.14.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:136925:13)
+      at Interface.emit (events.js:223:5)
+      at Interface._ttyWrite (readline.js:885:16)
+      at ReadStream.onkeypress (readline.js:191:10)
+      at ReadStream.emit (events.js:223:5)
+      at emitKeys (internal/readline/utils.js:433:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1151:36)
+      at ReadStream.emit (events.js:223:5)
+      at addChunk (_stream_readable.js:309:12)
+
+npm manifest: 
+  {
+    "name": "@kaliber/use-element-size",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "sideEffects": false,
+    "publishConfig": {
+      "access": "public"
+    },
+    "keywords": [
+      "react",
+      "hooks",
+      "hook"
+    ],
+    "files": [
+      "src/**",
+      "LICENSE",
+      "readme.md",
+      "package.json"
+    ],
+    "private": false,
+    "license": "MIT",
+    "description": "Determines the width and height in pixels of an element through ResizeObserver",
+    "repository": "https://github.com/kaliberjs/use-element-size.git",
+    "contributors": [
+      "Joost Kiens <joost@kaliber.net>",
+      "Peeke Kuepers <peeke@kaliber.net> (https://peeke.nl)"
+    ]
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

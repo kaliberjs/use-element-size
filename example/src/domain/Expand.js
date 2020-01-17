@@ -7,7 +7,7 @@ export function Expand({ children, expanded }) {
 
   return (
     <div className={styles.component} style={{ height: (expanded ? height : 0) + 'px' }}>
-      <div ref={innerRef} className={styles.inner}>
+      <div ref={innerRef}>
         {children}
       </div>
     </div>

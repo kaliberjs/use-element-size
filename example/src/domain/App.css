@@ -3,13 +3,18 @@
   align-items: center;
   justify-content: center;
   height: 100vh !important;
+  color: white;
+
+  & > :not(:last-child) {
+    margin-bottom: 20px;
+  }
 }
 
 .box {
-  width: 50%;
-  height: 50%;
+  width: 50vw !important;
+  height: 50vh !important;
+  padding: 20px;
   background-image: linear-gradient( 178.2deg,  rgba(10,34,231,1) -7.4%, rgba(223,9,142,1) 71.6% );
-  color: white;
   position: relative;
 
   & > .legend {
@@ -17,4 +22,17 @@
     right: 20px;
     bottom: 20px;
   }
+}
+
+.button {
+  border: 2px solid white;
+  padding: 8px;
+  background: transparent;
+  appearance: none;
+  color: inherit;
+}
+
+.componentExpand {
+  overflow: hidden;
+  transition: height 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 }

@@ -24,6 +24,7 @@ yarn add @kaliber/use-element-size
 ```
 
 ## Usage
+### Basic
 ```jsx
 import { useElementSize }  from '@kaliber/use-element-size'
 
@@ -31,6 +32,32 @@ function Component() {
   const elementRef = React.useRef()
   const { width, height } = useElementSize(elementRef)
   return <div ref={elementRef}>{width}px × {height}px</div>
+}
+```
+### Animate height
+```css
+.component {
+  overflow: hidden;
+  transition: height 0.5s;
+}
+```
+```jsx
+import { useElementSize } from '@kaliber/use-element-size'
+
+export function Expand({ children, expanded }) {
+  const innerRef = React.useRef(null)
+  const { height } = useElementSize(innerRef)
+
+  return (
+    <div 
+      className={styles.component} 
+      style={{ height: expanded ? height + 'px' : '0px' }}
+    >
+      <div ref={innerRef}>
+        {children}
+      </div>
+    </div>
+  )
 }
 ```
 

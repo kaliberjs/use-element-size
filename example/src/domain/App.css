@@ -1,0 +1,20 @@
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh !important;
+}
+
+.box {
+  width: 50%;
+  height: 50%;
+  background-image: linear-gradient( 178.2deg,  rgba(10,34,231,1) -7.4%, rgba(223,9,142,1) 71.6% );
+  color: white;
+  position: relative;
+
+  & > .legend {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+}

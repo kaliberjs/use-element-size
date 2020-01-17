@@ -12,7 +12,7 @@ Using @kaliberjs/build, you can add the following argument to the `polyfill()` c
 {polyfill(['default', 'ResizeObserver'])}
 ```
 
-or
+Without, you can manually add the following script to your page (or include it in your build):
 ```
 https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver
 ```

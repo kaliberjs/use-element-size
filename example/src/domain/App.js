@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <div className={styles.app}>
-      <div ref={elementRef} className={styles.box}>
+      <div className={styles.box} ref={elementRef}>
         <div className={styles.legend}>
           Resize browser
           <br />

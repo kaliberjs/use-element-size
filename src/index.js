@@ -1,28 +1,27 @@
 // assumes the resize-observer-polyfill is loaded, this can be done through polyfill.io
-export function useElementSize() {
-
+export function useElementSize(elementRef) {
   const [size, setSize] = React.useState({ width: 0, height: 0 })
   const observerRef = React.useRef(null)
-  const targetRef = React.useRef(null)
 
-  React.useEffect(() => cleanup, [])
-
-  const ref = React.useCallback(
-    node => {
+  React.useEffect(
+    () => {
       // @ts-ignore
-      if (!observerRef.current) observerRef.current = new window.ResizeObserver(callback)
-      if (targetRef.current) observerRef.current.unobserve(targetRef.current)
-      targetRef.current = node
-      if (node) observerRef.current.observe(node)
+      observerRef.current = new window.ResizeObserver(callback)
+      return () => { observerRef.current.disconnect() }
     },
     []
   )
 
-  return { size, ref }
+  React.useEffect(
+    () => {
+      const element = elementRef.current
+      observerRef.current.observe(element)
+      return () => { observerRef.current.unobserve(element) }
+    },
+    [elementRef]
+  )
 
-  function cleanup() {
-    if (observerRef.current) observerRef.current.disconnect()
-  }
+  return size
 
   function callback([entry]) {
     setSize({ width: entry.contentRect.width, height: entry.contentRect.height })

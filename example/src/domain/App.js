@@ -2,7 +2,8 @@ import { useElementSize }  from '@kaliber/use-element-size'
 import styles from './App.css'
 
 export default function App() {
-  const { size: { width, height }, ref: elementRef } = useElementSize()
+  const elementRef = React.useRef(null)
+  const { width, height } = useElementSize(elementRef)
   const [expanded, setExpanded] = React.useState(false)
 
   return (
@@ -29,7 +30,8 @@ export default function App() {
 }
 
 export function Expand({ children, expanded }) {
-  const { size: { height }, ref: innerRef } = useElementSize()
+  const innerRef = React.useRef(null)
+  const { height } = useElementSize(innerRef)
 
   return (
     <div className={styles.componentExpand} style={{ height: (expanded ? height : 0) + 'px' }}>

@@ -1,6 +1,5 @@
 // assumes the resize-observer-polyfill is loaded, this can be done through polyfill.io
 export function useElementSize() {
-
   const [size, setSize] = React.useState({ width: 0, height: 0 })
   const observerRef = React.useRef(null)
   const targetRef = React.useRef(null)

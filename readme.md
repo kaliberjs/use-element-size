@@ -29,8 +29,7 @@ yarn add @kaliber/use-element-size
 import { useElementSize }  from '@kaliber/use-element-size'
 
 function Component() {
-  const elementRef = React.useRef()
-  const { width, height } = useElementSize(elementRef)
+  const { size: { width, height }, ref: elementRef } = useElementSize()
   return <div ref={elementRef}>{width}px × {height}px</div>
 }
 ```
@@ -45,8 +44,7 @@ function Component() {
 import { useElementSize } from '@kaliber/use-element-size'
 
 export function Expand({ children, expanded }) {
-  const innerRef = React.useRef(null)
-  const { height } = useElementSize(innerRef)
+  const { size: { height }, ref: innerRef } = useElementSize()
 
   return (
     <div 

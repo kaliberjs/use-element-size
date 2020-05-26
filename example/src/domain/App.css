@@ -22,6 +22,10 @@
     right: 20px;
     bottom: 20px;
   }
+
+  & > :not(:last-child) {
+    margin-bottom: 8px;
+  }
 }
 
 .button {
@@ -35,4 +39,9 @@
 .componentExpand {
   overflow: hidden;
   transition: height 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.componentStretch {
+  height: 1rem;
+  background-color: white;
 }

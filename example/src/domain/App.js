@@ -1,4 +1,5 @@
 import { useElementSize } from '@kaliber/use-element-size'
+import { useSpring, animated } from 'react-spring'
 import styles from './App.css'
 
 export default function App() {
@@ -14,6 +15,8 @@ export default function App() {
           {Math.round(width)}px x {Math.round(height)}px
         </div>
 
+        <Stretch />
+
         <Expand {...{ expanded }}>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores magnam officiis nisi reiciendis architecto voluptate quam nobis cumque, modi quae aliquid possimus excepturi eveniet. Hic quos laudantium rerum magnam at!</p>
           <p>Dolores magnam officiis nisi reiciendis architecto voluptate quam nobis cumque, modi quae aliquid possimus excepturi eveniet. Hic quos laudantium rerum magnam at!</p>
@@ -28,7 +31,7 @@ export default function App() {
   )
 }
 
-export function Expand({ children, expanded }) {
+function Expand({ children, expanded }) {
   const { size: { height }, ref: innerRef } = useElementSize()
 
   return (
@@ -36,6 +39,19 @@ export function Expand({ children, expanded }) {
       <div ref={innerRef}>
         {children}
       </div>
+    </div>
+  )
+}
+
+function Stretch() {
+  const { size: { width }, ref: elementRef } = useElementSize()
+  const animatedProps = useSpring({
+    opacity: 300 / Math.max(1, width)
+  })
+
+  return (
+    <div ref={elementRef}>
+      <animated.div className={styles.componentStretch} style={animatedProps}/>
     </div>
   )
 }

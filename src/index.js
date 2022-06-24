@@ -4,26 +4,17 @@ const defaultSize = { width: 0, height: 0 }
 
 // assumes the resize-observer-polyfill is loaded, this can be done through polyfill.io
 export function useElementSize() {
-  const timeoutRef = React.useRef(null)
+  const animationFrameRef = React.useRef(null)
   const [size, setSize] = React.useState(defaultSize)
   const createObserver = React.useCallback(
     () => {
       // @ts-ignore
       return new window.ResizeObserver(([entry]) => {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current)
-        else handleResize()
-
-        timeoutRef.current = setTimeout(
-          () => { 
-            handleResize()
-            timeoutRef.current = null
-          }, 
-          300
-        )
-        
-        function handleResize() {
+        cancelAnimationFrame(animationFrameRef.current)
+        animationFrameRef.current = requestAnimationFrame(() => {
+          animationFrameRef.current = null
           setSize({ width: entry.contentRect.width, height: entry.contentRect.height })
-        }
+        })
       })
     },
     []
@@ -32,8 +23,8 @@ export function useElementSize() {
   const reset = React.useCallback(
     () => { 
       setSize(defaultSize) 
-      timeoutRef.current && clearTimeout(timeoutRef.current)
-      timeoutRef.current = null
+      animationFrameRef.current && cancelAnimationFrame(animationFrameRef.current)
+      animationFrameRef.current = null
     }, 
     []
   )

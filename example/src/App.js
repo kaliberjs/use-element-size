@@ -1,7 +1,7 @@
 import { useElementSize } from '@kaliber/use-element-size'
 import styles from './App.css'
 
-export default function App() {
+export function App() {
   const { size: { width, height }, ref: elementRef } = useElementSize()
   const [expanded, setExpanded] = React.useState(false)
 

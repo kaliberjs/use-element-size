@@ -11,7 +11,7 @@ export function App() {
         <div className={styles.legend}>
           Resize browser and watch the numbers change
           <br />
-          {Math.round(width)}px x {Math.round(height)}px
+          {Math.round(width)}px × {Math.round(height)}px
         </div>
 
         <Expand {...{ expanded }}>

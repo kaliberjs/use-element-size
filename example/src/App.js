@@ -9,7 +9,7 @@ export function App() {
     <div className={styles.app}>
       <div className={styles.box} ref={elementRef}>
         <div className={styles.legend}>
-          Resize browser
+          Resize browser and watch the numbers change
           <br />
           {Math.round(width)}px x {Math.round(height)}px
         </div>
@@ -28,7 +28,7 @@ export function App() {
   )
 }
 
-export function Expand({ children, expanded }) {
+function Expand({ children, expanded }) {
   const { size: { height }, ref: innerRef } = useElementSize()
 
   return (

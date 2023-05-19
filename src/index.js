@@ -9,7 +9,7 @@ export function useElementSize() {
     () => {
       // @ts-ignore
       return new window.ResizeObserver(([entry]) => {
-        setSize({ width: entry.contentRect.width, height: entry.contentRect.height })
+        setSize(getSizeFromEntry(entry))
       })
     },
     []
@@ -19,4 +19,16 @@ export function useElementSize() {
   const ref = useObservedRef({ createObserver, reset, disabled: false })
 
   return { size, ref }
+}
+
+function getSizeFromEntry(entry) {
+  if (entry.borderBoxSize) {
+    const [{ inlineSize: width, blockSize: height }] = entry.borderBoxSize
+    return { width, height }
+  }
+
+  return {
+    width: entry.target.offsetWidth,
+    height: entry.target.offsetHeight
+  }
 }

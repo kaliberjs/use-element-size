@@ -22,7 +22,7 @@ export function useElementSize() {
 }
 
 function getSizeFromEntry(entry) {
-  if (entry.borderBoxSize) {
+  if (entry.borderBoxSize && entry.borderBoxSize[Symbol.iterator] === 'function') {
     const [{ inlineSize: width, blockSize: height }] = entry.borderBoxSize
     return { width, height }
   }

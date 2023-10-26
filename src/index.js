@@ -22,8 +22,11 @@ export function useElementSize() {
 }
 
 function getSizeFromEntry(entry) {
-  if (entry.borderBoxSize && entry.borderBoxSize[Symbol.iterator] === 'function') {
+  if (entry.borderBoxSize && Array.isArray(entry.borderBoxSize)) {
     const [{ inlineSize: width, blockSize: height }] = entry.borderBoxSize
+    return { width, height }
+  } else if (entry.contentRect && entry.contentRect instanceof DOMRectReadOnly) {
+    const { width, height } = entry.contentRect
     return { width, height }
   }
 

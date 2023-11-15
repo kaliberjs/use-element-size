@@ -34,5 +34,5 @@ function getSizeFromEntry(entry) {
 }
 
 function roundedWidthAndHeight(width, height) {
-  return { width: Math.round(width), height: Math.round(height) }
+  return { width: Math.floor(width), height: Math.floor(height) }
 }

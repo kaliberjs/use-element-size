@@ -23,15 +23,16 @@ export function useElementSize() {
 
 function getSizeFromEntry(entry) {
   if (entry.borderBoxSize && Array.isArray(entry.borderBoxSize)) {
-    const [{ inlineSize: width, blockSize: height }] = entry.borderBoxSize
-    return { width, height }
+    const [{ inlineSize, blockSize }] = entry.borderBoxSize
+    return roundedWidthAndHeight(inlineSize, blockSize)
   } else if (entry.contentRect && entry.contentRect instanceof DOMRectReadOnly) {
     const { width, height } = entry.contentRect
-    return { width, height }
+    return roundedWidthAndHeight(width, height)
+  } else {
+    return roundedWidthAndHeight(entry.target.offsetWidth, entry.target.offsetHeight)
   }
+}
 
-  return {
-    width: entry.target.offsetWidth,
-    height: entry.target.offsetHeight
-  }
+function roundedWidthAndHeight(width, height) {
+  return { width: Math.round(width), height: Math.round(height) }
 }

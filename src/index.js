@@ -2,15 +2,32 @@ import { useObservedRef } from '@kaliber/use-observed-ref'
 
 const defaultSize = { width: 0, height: 0 }
 
-// assumes the resize-observer-polyfill is loaded, this can be done through polyfill.io
 export function useElementSize() {
   const [size, setSize] = React.useState(defaultSize)
+
   const createObserver = React.useCallback(
     () => {
-      // @ts-ignore
-      return new window.ResizeObserver(([entry]) => {
-        setSize(getSizeFromEntry(entry))
+      let previousSize = defaultSize
+
+      const observer = new window.ResizeObserver(([entry]) => {
+        const size = getSizeFromEntry(entry)
+
+        setSize(size)
+
+        // Suspend during the animation frame, to prevent errors
+        // https://blog.elantha.com/resizeobserver-loop-limit-exceeded/
+        if (previousSize.width !== size.width || previousSize.height !== size.height) {
+          observer.unobserve(entry.target)
+
+          requestAnimationFrame(() => { 
+            if (entry.target) observer.observe(entry.target) 
+          })
+        }
+
+        previousSize = size
       })
+
+      return observer
     },
     []
   );

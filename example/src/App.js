@@ -1,5 +1,6 @@
 import { useElementSize } from '@kaliber/use-element-size'
 import styles from './App.css'
+/** @import { ReactNode } from 'react' */
 
 export function App() {
   const { size: { width, height }, ref: elementRef } = useElementSize()
@@ -28,6 +29,7 @@ export function App() {
   )
 }
 
+/** @arg {{ children: ReactNode, expanded: boolean }} props */
 function Expand({ children, expanded }) {
   const { size: { height }, ref: innerRef } = useElementSize()
 

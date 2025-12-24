@@ -1,17 +1,19 @@
 {
   "name": "@kaliber/use-element-size",
   "version": "4.0.4",
-  "main": "src/index.js",
+  "main": "index.js",
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
+  "type": "module",
   "keywords": [
     "react",
     "hooks",
     "hook"
   ],
   "files": [
+    "index.js",
     "src/**",
     "LICENSE",
     "readme.md",
@@ -21,11 +23,16 @@
   "license": "MIT",
   "description": "Determines the width and height in pixels of an element through ResizeObserver",
   "repository": "https://github.com/kaliberjs/use-element-size.git",
-  "contributors": [
-    "Joost Kiens <joost@kaliber.net>",
-    "Peeke Kuepers <peeke@kaliber.net> (https://peeke.nl)"
-  ],
-  "dependencies": {
-    "@kaliber/use-observed-ref": "^1.0.0"
+  "scripts": {
+      "postinstall": "[ -d ./scripts -a -f ./scripts/install-peer-dependencies-for-typescript.js ] && node ./scripts/install-peer-dependencies-for-typescript.js || true"
+  },
+  "peerDependencies": {
+    "@kaliber/use-observed-ref": "^1.0.0",
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "@kaliber/eslint-plugin": "^1.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.0.0"
   }
 }

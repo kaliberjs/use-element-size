@@ -1,21 +1,21 @@
 {
   "name": "example",
-  "version": "0.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "@kaliber/build": "^0.0.126"
-  },
   "scripts": {
-    "build": "NODE_ENV=production kaliber-build",
-    "lint": "kaliber-lint",
-    "serve": "kaliber-serve",
-    "serve:dev": "PORT=8000 CONFIG_ENV=dev kaliber-serve",
-    "start": "npm-run-all --parallel watch serve:dev",
-    "watch": "CONFIG_ENV=dev kaliber-watch",
-    "postinstall": "./bin/postInstall"
+    "start": "npm run watch & npm run serve.dev & wait",
+    "watch": "NODE_OPTIONS='--enable-source-maps --preserve-symlinks' CONFIG_ENV=dev kaliber-watch",
+    "serve.dev": "NODE_OPTIONS='--enable-source-maps --preserve-symlinks' PORT=8000 CONFIG_ENV=dev kaliber-serve"
+  },
+  "dependencies": {
+    "@kaliber/build": "^3.0.0",
+    "@kaliber/config": "^0.0.8",
+    "@kaliber/serve": "^1.0.0",
+    "@kaliber/use-element-size": "link:../",
+    "@kaliber/use-observed-ref": "^1.0.0"
   },
   "devDependencies": {
-    "npm-run-all": "^4.1.5"
+    "@kaliber/eslint-plugin": "^1.0.0",
+    "@kaliber/stylelint-plugin": "^1.0.0",
+    "@types/node": "^22.19.3",
+    "@types/react": "^18.0.0"
   }
 }

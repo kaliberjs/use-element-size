@@ -13,14 +13,22 @@ export function useElementSize() {
       })
     },
     []
-  );
+  )
 
   const reset = React.useCallback(() => { setSize(defaultSize) }, [])
+  // eslint-disable-next-line @kaliber/naming-policy
   const ref = useObservedRef({ createObserver, reset, disabled: false })
 
   return { size, ref }
 }
 
+/**
+ * @arg {{
+ *   borderBoxSize?: [{ inlineSize: number, blockSize: number }] | {},
+ *   contentRect?: DOMRectReadOnly | {},
+ *   target: Element,
+ * }} entry
+ */
 function getSizeFromEntry(entry) {
   if (entry.borderBoxSize && Array.isArray(entry.borderBoxSize)) {
     const [{ inlineSize, blockSize }] = entry.borderBoxSize
@@ -29,10 +37,16 @@ function getSizeFromEntry(entry) {
     const { width, height } = entry.contentRect
     return roundedWidthAndHeight(width, height)
   } else {
+    if (!(entry.target instanceof HTMLElement))
+      throw new Error(`Observer entry target (${entry.target.nodeName}) is not an html element`)
     return roundedWidthAndHeight(entry.target.offsetWidth, entry.target.offsetHeight)
   }
 }
 
+/**
+ * @arg {number} width
+ * @arg {number} height
+ */
 function roundedWidthAndHeight(width, height) {
   return { width: Math.floor(width), height: Math.floor(height) }
 }
